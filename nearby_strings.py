@@ -26,7 +26,7 @@ def levenshtein(s1, s2):
 
 
 if __name__ == '__main__':
-    # default word count and word
+    # default word count
     word_count = 10
 
     parser = argparse.ArgumentParser()
@@ -34,10 +34,10 @@ if __name__ == '__main__':
     parser.add_argument("-n", type=int, help="number of similar words to output")
     args = parser.parse_args()
 
-    # option to input key_word via command-line
+    # key_word input via command-line
     key_word = args.word
 
-    # option to input word count via command-line
+    # option to input word_count via command-line
     if args.n:
         word_count = args.n
 
@@ -58,7 +58,8 @@ if __name__ == '__main__':
     # print first 10 values (w/ shortest distance)
     count = 0
     for key, value in sorted(word_dictionary.iteritems(), key=lambda (k, v): (v, k)):
-        print key
-        count += 1
+        if (key != key_word):
+            print key
+            count += 1
         if count == word_count:
             break
