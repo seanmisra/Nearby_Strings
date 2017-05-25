@@ -1,4 +1,5 @@
-import sys
+# requires python 2.7 and above
+import argparse
 
 
 # from: https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance
@@ -27,15 +28,18 @@ def levenshtein(s1, s2):
 if __name__ == '__main__':
     # default word count and word
     word_count = 10
-    key_word = "panjiva"
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("word", help="a string to match words against")
+    parser.add_argument("-n", type=int, help="number of similar words to output")
+    args = parser.parse_args()
 
     # option to input key_word via command-line
-    if len(sys.argv) > 1:
-        key_word = sys.argv[1]
+    key_word = args.word
 
     # option to input word count via command-line
-    if len(sys.argv) > 2:
-        word_count = int(sys.argv[2])
+    if args.n:
+        word_count = args.n
 
     # get all words from /usr/share/dict/words
     all_words = []
